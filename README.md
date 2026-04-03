@@ -14,6 +14,7 @@ Infraestructura gestionada con Terraform (IaC)
 ## 📂 Infraestructura del proyecto
 
 
+````
 eva1/
 ├── backend
 ├── frontend
@@ -26,7 +27,7 @@ eva1/
 │ ├── security.tf
 ├──  .gitignore
 └── README.md
-
+````
 **Desgloce**
 
 | Lista | Descripción |
