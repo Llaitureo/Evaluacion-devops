@@ -16,8 +16,8 @@ Infraestructura gestionada con Terraform (IaC)
 
 ````
 eva1/
-├── backend
-├── frontend
+├── backend #futura implementación
+├── frontend #futura implementación
 ├── infra/
 │ ├── main.tf
 │ ├── iam.tf
@@ -28,7 +28,7 @@ eva1/
 ├──  .gitignore
 └── README.md
 ````
-**Desgloce**
+**Desglose**
 
 | Lista | Descripción |
 | ------------- | ------ |
@@ -57,7 +57,7 @@ Procura cambiar los siguientes archivos por la información que poseas:
 
 Si llegas a cambiar el código de infra, según las sugerencias, usa:
 - `terraform fmt` (Estética.)
-- `terraform validation` (Procura que los resources estén bien escritos.)
+- `terraform validate` (Procura que los resources estén bien escritos.)
 
 ## 🚀 Despliege
 Luego de los cambios sugeridos (y algunos obligatorios), usa:
