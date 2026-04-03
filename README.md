@@ -13,13 +13,13 @@ Infraestructura gestionada con Terraform (IaC)
 
 ## 📂 Infraestructura del proyecto
 
-📦infra
- ┣ 📜compute.tf
- ┣ 📜iam.tf
- ┣ 📜keys.tf
- ┣ 📜main.tf
- ┣ 📜network.tf
- ┗ 📜security.tf
+- 📦infra/
+    - compute.tf
+    - iam.tf
+    - keys.tf
+    - main.tf
+    - network.tf
+    - security.tf
 
 **Desgloce**
 
@@ -58,7 +58,7 @@ Luego de los cambios sugeridos (y algunos obligatorios), usa:
 - `terraform apply`
 
 Para apagar las instancias, usa:
--`terraform destroy`
+- `terraform destroy`
 
 ## 📦 Diagrama de AWS
 
