@@ -18,6 +18,11 @@ resource "aws_launch_template" "front_template" {
 
   user_data = base64encode(<<-EOF
     #!/bin/bash
+
+    until curl -s --head http://www.google.com | head -n 1 | grep "200 OK" > /dev/null; do //Espera a que la instancia tenga conexión a internet antes de continuar
+      echo "Esperando conexión a internet..."
+      sleep 5
+    done
     # Actualizar paquetes
     yum update -y
     
@@ -28,7 +33,7 @@ resource "aws_launch_template" "front_template" {
     usermod -aG docker ec2-user
     yum install git -y
     
-    docker run -d -p 80:80 --name web-front nginx
+    docker run -d --restart always -p 80:80 --name web-front nginx
   EOF
   )
 }
@@ -52,11 +57,19 @@ resource "aws_launch_template" "back_template" {
 
   user_data = base64encode(<<-EOF
     #!/bin/bash
+
+    until curl -s --head http://www.google.com | head -n 1 | grep "200 OK" > /dev/null; do //Espera a que la instancia tenga conexión a internet antes de continuar, crucial para la instalación de paquetes.
+      echo "Esperando conexión a internet..."
+      sleep 5
+    done
     yum update -y
     amazon-linux-extras install docker -y
+    yum install git nmap-ncat -y  # Herramientas para clonar el código y validar la conectividad de red
+    
     systemctl enable docker
     systemctl start docker
     usermod -aG docker ec2-user
+
     yum install git -y
   EOF
   )
@@ -80,6 +93,11 @@ resource "aws_launch_template" "data_template" {
 
   user_data = base64encode(<<-EOF
     #!/bin/bash
+
+    until curl -s --head http://www.google.com | head -n 1 | grep "200 OK" > /dev/null; do
+      echo "Esperando conexión a internet..."
+      sleep 5
+    done
     yum update -y
     
     yum install -y mariadb-server
@@ -88,7 +106,7 @@ resource "aws_launch_template" "data_template" {
     systemctl start mariadb
     systemctl enable mariadb
     
-    sleep 10 # Esperar a que el servicio esté completamente iniciado
+    sleep 2 # Esperar a que el servicio esté completamente iniciado
     mysql -e "CREATE DATABASE innovatechdb;"
   EOF
   )
@@ -115,6 +133,7 @@ resource "aws_instance" "back_server" {
   tags = {
     Name = "Back-Server-Innovatech"
   }
+  depends_on = [aws_nat_gateway.nat_gw]
 }
 
 resource "aws_instance" "data_server" {
@@ -126,4 +145,5 @@ resource "aws_instance" "data_server" {
   tags = {
     Name = "Data-Server-Innovatech"
   }
+  depends_on = [aws_nat_gateway.nat_gw]
 }

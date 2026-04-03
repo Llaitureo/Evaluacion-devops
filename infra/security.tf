@@ -14,7 +14,7 @@ resource "aws_security_group" "web_sg" { //Grupo de seguridad para la capa web -
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["123.456.789.123/32"] //Permite acceso solo desde esta IP, CAMBIAR POR TU IP REAL
+    cidr_blocks = ["10.123.10.10/32"] //Permite acceso solo desde esta IP, CAMBIAR POR TU IP REAL
   }
 
 
@@ -71,7 +71,7 @@ resource "aws_security_group" "data_sg" { //Grupo de seguridad para la capa de d
     from_port       = 22
     to_port         = 22
     protocol        = "tcp"
-    security_groups = [aws_security_group.web_sg.id] // Permite acceso solo desde el grupo de seguridad web_sg
+    security_groups = [aws_security_group.backend_sg.id] // Permite acceso solo desde el grupo de seguridad backend_sg
   }
 
   egress {

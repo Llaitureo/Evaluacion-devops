@@ -7,12 +7,13 @@ Infraestructura gestionada con Terraform (IaC)
     - Web_server -> Docker, Git y Nginx
     - Back_server -> Docker y Git
     - Data_server -> MariaDB(Mysql)
+*Las instancias poseen el mínimo privilegio mediante IAM y SG's.*
 
 
-> *Las instancias poseen el mínimo privilegio mediante IAM y SG's*
+
+> *PD: las instancias esperarán hasta que puedan conectarse con google y empezará la instalación de paquetes.*
 
 ## 📂 Infraestructura del proyecto
-
 
 ````
 eva1/
@@ -61,11 +62,35 @@ Si llegas a cambiar el código de infra, según las sugerencias, usa:
 
 ## 🚀 Despliege
 Luego de los cambios sugeridos (y algunos obligatorios), usa:
+- `terraform init`
 - `terraform plan`
 - `terraform apply`
 
+- Para entrar al front mediante SSH:
+    - ubicate en el directorio de la llave privada
+    - escribe el ejemplo de front del cliente SSH
+    - usa la llave privada ya descargada para entrar ("llave_deluxe.pem" o algo así)
+
+- Para entrar al backend_server mediante SSH debes poseer la llave privada:
+    - `nano llave.pem` (para crear el archivo en el **Front_server**)
+    - debes pegar la llave privada dentro y guardar.
+    - cambia los permisos a 400 de la llave creada con nano
+    - dentro del front_server, usa la plantilla de ssh y usa la llave creada
+
+Para el data_server, entra al backend_server y repite los pasos, luego pon la plantilla de SSH de data_server y podras entrar.
+
+Para ver el estado de instalación en las instancias, usa: `sudo tail -f /var/log/cloud-init-output.log`
+(Se puede desde cualquier punto)
+
 Para apagar las instancias, usa:
 - `terraform destroy`
+
+### Opcional
+
+para ver que la bdd responde desde el back, usa: `nc -zv <IP_PRIVADA_DATA_SERVER> 3306`
+(deberia responder con *succeeded!*)
+
+
 
 ## 📦 Diagrama de AWS
 
