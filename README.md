@@ -71,4 +71,6 @@ Para apagar las instancias, usa:
 
 ![DiagramaAWS](image/DiagramaAWS2.png)
 
+> *Futuro: AWS Fargate (serverless)*
+
 
