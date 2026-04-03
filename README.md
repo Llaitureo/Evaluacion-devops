@@ -13,13 +13,19 @@ Infraestructura gestionada con Terraform (IaC)
 
 ## 📂 Infraestructura del proyecto
 
-- 📦infra/
-    - compute.tf
-    - iam.tf
-    - keys.tf
-    - main.tf
-    - network.tf
-    - security.tf
+
+eva1/
+├── backend
+├── frontend
+├── infra/
+│ ├── main.tf
+│ ├── iam.tf
+│ ├── compute.tf
+│ ├── keys.tf
+│ ├── network.tf
+│ ├── security.tf
+├──  .gitignore
+└── README.md
 
 **Desgloce**
 
