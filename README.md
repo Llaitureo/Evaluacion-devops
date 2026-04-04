@@ -43,6 +43,7 @@ eva1/
 
 - Terraform v1.1x + (`terraform --version`)
 - AWS CLI (`aws --version`)
+- tener la llave.pem descargada del laboratorio ya iniciado (EC2 - key-pair).
 
 ## ⚙️ Indicaciones y sugerencias para infra
 Procura cambiar los siguientes archivos por la información que poseas:
@@ -63,7 +64,7 @@ Si llegas a cambiar el código de infra, según las sugerencias, usa:
 ## 🚀 Despliege
 Luego de los cambios sugeridos (y algunos obligatorios), usa:
 - `terraform init`
-- `terraform plan`
+- `terraform plan` (Es necesario configurar aws con el lab, usa: `aws configure`)
 - `terraform apply`
 
 - Para entrar al front mediante SSH:

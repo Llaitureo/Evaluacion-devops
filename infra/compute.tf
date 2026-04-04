@@ -19,7 +19,7 @@ resource "aws_launch_template" "front_template" {
   user_data = base64encode(<<-EOF
     #!/bin/bash
 
-    until curl -s --head http://www.google.com | head -n 1 | grep "200 OK" > /dev/null; do //Espera a que la instancia tenga conexión a internet antes de continuar
+    until curl -s --head http://www.google.com | head -n 1 | grep "200 OK" > /dev/null; do #Espera a que la instancia tenga conexión a internet antes de continuar
       echo "Esperando conexión a internet..."
       sleep 5
     done
@@ -58,7 +58,7 @@ resource "aws_launch_template" "back_template" {
   user_data = base64encode(<<-EOF
     #!/bin/bash
 
-    until curl -s --head http://www.google.com | head -n 1 | grep "200 OK" > /dev/null; do //Espera a que la instancia tenga conexión a internet antes de continuar, crucial para la instalación de paquetes.
+    until curl -s --head http://www.google.com | head -n 1 | grep "200 OK" > /dev/null; do # Espera a que la instancia tenga conexión a internet antes de continuar, crucial para la instalación de paquetes.
       echo "Esperando conexión a internet..."
       sleep 5
     done
