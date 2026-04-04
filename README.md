@@ -94,7 +94,7 @@ para ver que la bdd responde desde el back, usa: `nc -zv <IP_PRIVADA_DATA_SERVER
 
 ## 📦 Diagrama de AWS
 
-![DiagramaAWS](image/DiagramaAWS2.png)
+![DiagramaAWS](image/daws2.png)
 
 > *Futuro: AWS Fargate (serverless)*
 
